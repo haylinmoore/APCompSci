@@ -10,7 +10,11 @@ function dec2bin(dec) {
     return (dec >>> 0).toString(2);
 }
 
-request.get("https://www.gravatar.com/avatar/d19dff679ad6338d7c604eb64327a1ea?s=255", function(error, response, body) {
+if (!process.argv[2]) {
+    throw "Please pass image URL, node imagetotext.js https://domaim.tld/pathtoimage.file"
+}
+
+request.get(process.argv[2], function(error, response, body) {
     if (!error && response.statusCode == 200) {
 
         //Get its size
